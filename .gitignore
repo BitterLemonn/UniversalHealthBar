@@ -1,0 +1,14 @@
+/.mcs/
+/studio.json
+/work.mcscfg
+/world_behavior_packs.json
+/world_resource_packs.json
+*.exe
+.idea
+.github
+.vscode
+ModAPI_API_Index.md
+ModAPI_Event_Index.md
+world_icon.jpeg
+.qu_packages
+mcdkStart.py
