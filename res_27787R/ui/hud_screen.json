@@ -1,0 +1,19 @@
+{
+    "namespace": "hud",
+    "boss_health_panel/boss_name": {
+        "layer": 3
+    },
+    "boss_health_panel": {
+        "modifications": [
+            {
+                "control_name": "boss_name",
+                "operation": "insert_after",
+                "value": [
+                    {
+                        "uhb_bar@uhb_common.uhb_health_bar_collections": {}
+                    }
+                ]
+            }
+        ]
+    }
+}

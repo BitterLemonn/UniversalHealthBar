@@ -1,0 +1,6 @@
+{
+    "ui_defs": [
+        "ui/uhb_common.json",
+        "ui/hud_screen.json"
+    ]
+}

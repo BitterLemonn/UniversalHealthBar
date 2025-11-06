@@ -1,0 +1,50 @@
+{
+    "namespace": "uhb_common",
+    "uhb_fill_bar": {
+        "type": "image",
+        "clip_direction": "left",
+        "clip_pixelperfect": false,
+        "clip_ratio": "#clip_ratio",
+        "size": [
+            0,
+            0
+        ],
+        "texture": "",
+        "bindings": [
+            {
+                "binding_name_override": "#clip_ratio",
+                "binding_collection_name": "boss_bars",
+                "binding_type": "collection",
+                "binding_name": "#progress_percentage"
+            }
+        ]
+    },
+    "uhb_health_bar_collections": {
+        "type": "panel",
+        "offset": "#offset",
+        "size": [
+            "100%cm",
+            "100%cm"
+        ],
+        "controls": [
+            {
+                "fill_bar@uhb_common.uhb_fill_bar": {
+                    "layer": 1
+                }
+            },
+            {
+                "mask_bar@uhb_common.uhb_mask_bar": {
+                    "layer": 2
+                }
+            }
+        ]
+    },
+    "uhb_mask_bar": {
+        "type": "image",
+        "size": [
+            0,
+            0
+        ],
+        "texture": ""
+    }
+}
