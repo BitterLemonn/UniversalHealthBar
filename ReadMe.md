@@ -90,7 +90,7 @@ A: 检查以下几点：
 A: 使用 `setPanelOffset()` 调整整体位置，使用 `setMaskOffset()` 和 `setFillOffset()` 微调细节
 
 **Q: 可以为同一个Boss设置多个血条样式吗？**  
-A: 同一个Boss名称只能有一个血条配置，使用 `setOverwrite()` 可实现不同阶段使用不同血条样式
+A: 同一个Boss名称只能有一个血条配置，使用 `setOverwrite()` 可以覆写已经注册的配置
 
 **Q: 内层和外层有什么区别？**  
 A: 外层通常是固定的边框或底色，内层是会随血量变化的填充部分
