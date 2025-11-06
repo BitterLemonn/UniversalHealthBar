@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 from ..Data.ClientRegistryData import ClientRegistryData
 from ..QuModLibs.Client import *
@@ -9,14 +10,25 @@ NativeScreenManager = clientApi.GetNativeScreenManagerCls()
 compFactory = clientApi.GetEngineCompFactory()
 proxyObj = None  # type: "UHBUiProxy" | None
 
+getInitRegistry = False  # 是否已请求初始注册表
+
 
 @CallBackKey("UHB/client/registry")
 def onUHBRegistry(packedRegistryObj):
     import pickle
 
+    global getInitRegistry
+    getInitRegistry = True
     registryObj = pickle.loads(packedRegistryObj)
     ClientRegistryData.getInstance().registry(registryObj)
     print("[DEBUG] 已注册Boss血条数据: {}".format(registryObj.bossName))
+
+
+@Listen("LoadClientAddonScriptsAfter")
+def onLoadClientAddonScriptsAfter():
+    global getInitRegistry
+    if not getInitRegistry:
+        Call("UHB/server/request_registry")
 
 
 @Listen("UiInitFinished")
