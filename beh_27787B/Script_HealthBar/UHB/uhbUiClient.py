@@ -160,6 +160,7 @@ class UHBUiProxy(ProxyCls):
         uhbFillBar.SetSize(registryData.fillSize, True)
         uhbMaskBar.SetPosition(registryData.maskOffset)
         uhbFillBar.SetPosition(registryData.fillOffset)
+        uhbFillBar.SetSpriteColor(registryData.fillColor)
         if registryData.fillOnTop:
             uhbFillBar.SetLayer(2, False, False)
             uhbMaskBar.SetLayer(1, True, True)

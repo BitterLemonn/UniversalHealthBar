@@ -21,34 +21,35 @@ registryObj = uhbServer.getRegistryObj()
 使用链式调用设置血条的各项参数：
 
 ```python
-registryObj.setBossName("你的Boss名称") \
-    .setMaskPath("textures/ui/boss_bar_mask") \
-    .setFillPath("textures/ui/boss_bar_fill") \
-    .setMaskSize((182, 14)) \
-    .registry()
+registryObj.setBossName("你的Boss名称")\
+.setMaskPath("textures/ui/boss_bar_mask")\
+.setFillPath("textures/ui/boss_bar_fill")\
+.setMaskSize((182, 14))\
+.registry()
 ```
 
 ### 参数说明
 
-| 方法                     | 参数类型 | 必填 | 默认值             | 说明                                       |
-| ------------------------ | -------- | ---- | ------------------ | ------------------------------------------ |
-| `setBossName(name)`      | `str`    | ✓    | 无                 | 设置Boss的名称（与游戏中显示的名称一致）   |
-| `setMaskPath(path)`      | `str`    | ✓    | 无                 | 设置血条外层（边框）贴图路径               |
-| `setFillPath(path)`      | `str`    | ✓    | 无                 | 设置血条内层（填充）贴图路径               |
-| `setMaskSize(size)`      | `tuple`  | ✓    | 无                 | 设置外层贴图尺寸，格式：`(宽, 高)`         |
-| `setFillSize(size)`      | `tuple`  | ✗    | 与 `maskSize` 相同 | 设置内层贴图尺寸，格式：`(宽, 高)`         |
-| `setPanelOffset(offset)` | `tuple`  | ✗    | `(0, 0)`           | 设置整个血条面板的偏移，格式：`(x, y)`     |
-| `setMaskOffset(offset)`  | `tuple`  | ✗    | `(0, 0)`           | 设置外层贴图的偏移，格式：`(x, y)`         |
-| `setFillOffset(offset)`  | `tuple`  | ✗    | `(0, 0)`           | 设置内层贴图的偏移，格式：`(x, y)`         |
-| `setFillOnTop()`         | 无       | ✗    | `False`            | 设置内层显示在外层之上（用于特殊血条样式） |
-| `setOverwrite()`         | 无       | ✗    | `False`            | 允许覆盖已存在的同名Boss血条配置           |
+| 方法                       | 参数类型    | 必填 | 默认值             | 说明                          |
+|--------------------------|---------|----|-----------------|-----------------------------|
+| `setBossName(name)`      | `str`   | ✓  | 无               | 设置Boss的名称（与游戏中显示的名称一致）      |
+| `setMaskPath(path)`      | `str`   | ✓  | 无               | 设置血条外层（边框）贴图路径              |
+| `setFillPath(path)`      | `str`   | ✓  | 无               | 设置血条内层（填充）贴图路径              |
+| `setMaskSize(size)`      | `tuple` | ✓  | 无               | 设置外层贴图尺寸，格式：`(宽, 高)`        |
+| `setFillSize(size)`      | `tuple` | ✗  | 与 `maskSize` 相同 | 设置内层贴图尺寸，格式：`(宽, 高)`        |
+| `setPanelOffset(offset)` | `tuple` | ✗  | `(0, 0)`        | 设置整个血条面板的偏移，格式：`(x, y)`     |
+| `setMaskOffset(offset)`  | `tuple` | ✗  | `(0, 0)`        | 设置外层贴图的偏移，格式：`(x, y)`       |
+| `setFillOffset(offset)`  | `tuple` | ✗  | `(0, 0)`        | 设置内层贴图的偏移，格式：`(x, y)`       |
+| `setFillColor(color)`    | `tuple` | ✗  | `(1.0,1.0,1.0)` | 设置内层贴图颜色（色调），格式：`(r, g, b)` |
+| `setFillOnTop()`         | 无       | ✗  | `False`         | 设置内层显示在外层之上（用于特殊血条样式）       |
+| `setOverwrite()`         | 无       | ✗  | `False`         | 允许覆盖已存在的同名Boss血条配置          |
 
 ### 第三步：准备贴图资源
 
 1. 在资源包的 `textures` 目录下创建你的血条贴图
 2. 建议准备两张贴图：
-   - **外层贴图**（mask）：血条的边框或底色
-   - **内层贴图**（fill）：血条的填充部分，会随血量变化
+    - **外层贴图**（mask）：血条的边框或底色
+    - **内层贴图**（fill）：血条的填充部分，会随血量变化
 
 ### 完整示例
 
@@ -57,17 +58,18 @@ registryObj.setBossName("你的Boss名称") \
 
 import serverApi
 
+
 # 在合适的时机（需在客户端加载mod完成后）注册血条
 def registerCustomBossBar():
     uhbServer = serverApi.GetSystem("lemonUHB", "UHBServer")
-    
+
     # 创建并配置注册对象
-    uhbServer.getRegistryObj() \
-        .setBossName("末影龙") \
-        .setMaskPath("textures/ui/custom/dragon_bar_mask") \
-        .setFillPath("textures/ui/custom/dragon_bar_fill") \
-        .setMaskSize((182, 14)) \
-        .registry()
+    uhbServer.getRegistryObj()\
+    .setBossName("末影龙")\
+    .setMaskPath("textures/ui/custom/dragon_bar_mask")\
+    .setFillPath("textures/ui/custom/dragon_bar_fill")\
+    .setMaskSize((182, 14))\
+    .registry()
 ```
 
 ## 注意事项
@@ -82,6 +84,7 @@ def registerCustomBossBar():
 
 **Q: 血条没有显示怎么办？**  
 A: 检查以下几点：
+
 - Boss名称是否与游戏内显示完全一致
 - 贴图路径是否正确
 - 资源包是否正确安装并启用
@@ -101,12 +104,15 @@ A: 外层通常是固定的边框或底色，内层是会随血量变化的填�
 
 ### 核心创新：多模组协同的"礼让机制"
 
-本模组最巧妙的设计在于：**每个模组只显示一次自己不管的Boss的原生血条，却每tick隐藏自己管理的Boss的原生血条**。这种"礼让机制"完美解决了多模组血条冲突问题。
+本模组最巧妙的设计在于：**每个模组只显示一次自己不管的Boss的原生血条，却每tick隐藏自己管理的Boss的原生血条**。这种"
+礼让机制"完美解决了多模组血条冲突问题。
 
 ### 工作原理详解
 
 #### 场景假设
+
 假设有两个模组同时安装：
+
 - **模组A**：注册了Boss"末影龙"的自定义血条
 - **模组B**：注册了Boss"凋灵"的自定义血条
 
@@ -147,14 +153,14 @@ if cacheKey not in self.bossStateCache or self.bossStateCache[cacheKey]["bossNam
 if not isRegistered:
     # 情况1：不是我的Boss，我只显示一次原生血条就不管了
     if not self.bossStateCache[cacheKey]["dataModified"]:
-        vanillaHealthBar.SetVisible(True)   # 显示原生（仅一次）
-        uhbHealthBar.SetVisible(False)       # 隐藏自定义（仅一次）
+        vanillaHealthBar.SetVisible(True)  # 显示原生（仅一次）
+        uhbHealthBar.SetVisible(False)  # 隐藏自定义（仅一次）
         self.bossStateCache[cacheKey]["dataModified"] = True
     return  # 关键：直接返回，不再每tick处理
 
 # 情况2：是我的Boss，我要持续控制
 vanillaHealthBar.SetVisible(False)  # 每tick隐藏原生
-uhbHealthBar.SetVisible(True)        # 每tick显示自定义
+uhbHealthBar.SetVisible(True)  # 每tick显示自定义
 
 # UI数据只设置一次（性能优化）
 if not self.bossStateCache[cacheKey]["dataModified"]:
@@ -168,7 +174,9 @@ if not self.bossStateCache[cacheKey]["dataModified"]:
 ### 为什么这样设计？
 
 #### 传统方案的问题
+
 如果未注册的Boss也每tick显示原生血条：
+
 ```python
 # ❌ 错误做法
 if not isRegistered:
@@ -176,9 +184,11 @@ if not isRegistered:
     uhbHealthBar.SetVisible(False)
     return
 ```
+
 **问题**：模组A和模组B会互相抢夺控制权，谁后执行谁就赢，导致血条闪烁或混乱。
 
 #### 本模组的巧妙之处
+
 ```python
 # ✅ 正确做法
 if not isRegistered:
@@ -188,7 +198,9 @@ if not isRegistered:
         self.bossStateCache[cacheKey]["dataModified"] = True
     return  # 礼让：不是我的Boss，我就不再干预
 ```
+
 **优势**：
+
 - 模组A注册了"末影龙"，每tick隐藏原生 → **主动权**
 - 模组B没注册"末影龙"，只显示一次原生就退出 → **礼让**
 - 结果：模组A的持续隐藏 > 模组B的一次显示 → **和谐共存**

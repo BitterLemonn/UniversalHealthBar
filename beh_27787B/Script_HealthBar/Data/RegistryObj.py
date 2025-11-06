@@ -12,6 +12,7 @@ class RegistryObj(object):
         self.fillSize = None
         self.maskOffset = None
         self.fillOffset = None
+        self.fillColor = None
         self.fillOnTop = False
         self.overwrite = False
 
@@ -71,6 +72,13 @@ class RegistryObj(object):
         self.fillOffset = offset
         return self
 
+    def setFillColor(self, color):  # type: ("RegistryObj", tuple) -> "RegistryObj"
+        """
+        设置内层颜色
+        """
+        self.fillColor = color
+        return self
+
     def setFillOnTop(self):  # type: ("RegistryObj") -> "RegistryObj"
         """
         设置内层在外层之上
@@ -102,5 +110,7 @@ class RegistryObj(object):
             self.panelOffset = (0, 0)
         if not self.fillSize:
             self.fillSize = self.maskSize
+        if not self.fillColor:
+            self.fillColor = (1.0, 1.0, 1.0)
 
         serverApi.GetSystem("lemonUHB", "UHBServer").registry(self)
