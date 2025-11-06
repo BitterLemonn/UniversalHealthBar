@@ -97,11 +97,11 @@ class RegistryObj(object):
         if not self.bossName:
             raise ValueError("未设置Boss名称")
         if not self.maskPath:
-            raise ValueError("未设置外层路径")
+            self.maskPath = "textures/ui/empty_progress_bar"
         if not self.fillPath:
-            raise ValueError("未设置内层路径")
+            self.fillPath = "textures/ui/filled_progress_bar"
         if not self.maskSize:
-            raise ValueError("未设置外层尺寸")
+            self.maskSize = (182, 5)
         if not self.fillOffset:
             self.fillOffset = (0, 0)
         if not self.maskOffset:

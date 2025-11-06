@@ -22,10 +22,10 @@ registryObj = uhbServer.getRegistryObj()
 
 ```python
 registryObj.setBossName("你的Boss名称")\
-.setMaskPath("textures/ui/boss_bar_mask")\
-.setFillPath("textures/ui/boss_bar_fill")\
-.setMaskSize((182, 14))\
-.registry()
+    .setMaskPath("textures/ui/boss_bar_mask")\
+    .setFillPath("textures/ui/boss_bar_fill")\
+    .setMaskSize((182, 14))\
+    .registry()
 ```
 
 ### 参数说明
@@ -33,9 +33,9 @@ registryObj.setBossName("你的Boss名称")\
 | 方法                       | 参数类型    | 必填 | 默认值             | 说明                          |
 |--------------------------|---------|----|-----------------|-----------------------------|
 | `setBossName(name)`      | `str`   | ✓  | 无               | 设置Boss的名称（与游戏中显示的名称一致）      |
-| `setMaskPath(path)`      | `str`   | ✓  | 无               | 设置血条外层（边框）贴图路径              |
-| `setFillPath(path)`      | `str`   | ✓  | 无               | 设置血条内层（填充）贴图路径              |
-| `setMaskSize(size)`      | `tuple` | ✓  | 无               | 设置外层贴图尺寸，格式：`(宽, 高)`        |
+| `setMaskPath(path)`      | `str`   | ✗  | 原版贴图            | 设置血条外层（边框）贴图路径              |
+| `setFillPath(path)`      | `str`   | ✗  | 原版贴图            | 设置血条内层（填充）贴图路径              |
+| `setMaskSize(size)`      | `tuple` | ✗  | 原版大小            | 设置外层贴图尺寸，格式：`(宽, 高)`        |
 | `setFillSize(size)`      | `tuple` | ✗  | 与 `maskSize` 相同 | 设置内层贴图尺寸，格式：`(宽, 高)`        |
 | `setPanelOffset(offset)` | `tuple` | ✗  | `(0, 0)`        | 设置整个血条面板的偏移，格式：`(x, y)`     |
 | `setMaskOffset(offset)`  | `tuple` | ✗  | `(0, 0)`        | 设置外层贴图的偏移，格式：`(x, y)`       |
@@ -65,11 +65,25 @@ def registerCustomBossBar():
 
     # 创建并配置注册对象
     uhbServer.getRegistryObj()\
-    .setBossName("末影龙")\
-    .setMaskPath("textures/ui/custom/dragon_bar_mask")\
-    .setFillPath("textures/ui/custom/dragon_bar_fill")\
-    .setMaskSize((182, 14))\
-    .registry()
+        .setBossName("末影龙")\
+        .setMaskPath("textures/ui/custom/dragon_bar_mask")\
+        .setFillPath("textures/ui/custom/dragon_bar_fill")\
+        .setMaskSize((182, 14))\
+        .registry()
+
+# 示例改变原生血条颜色
+import serverApi
+
+# 在合适的时机（需在客户端加载mod完成后）注册血条
+def registerCustomBossBar():
+    uhbServer = serverApi.GetSystem("lemonUHB", "UHBServer")
+
+    # 创建并配置注册对象 (注意要使用fillOnTop改变顺序)
+    uhbServer.getRegistryObj() \
+        .setBossName("末影龙") \
+        .setFillColor((0.0, 1.0, 0.0)) \
+        .fillOnTop() \
+        .registry()
 ```
 
 ## 注意事项

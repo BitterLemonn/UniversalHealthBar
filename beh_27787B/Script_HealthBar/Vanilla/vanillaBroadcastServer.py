@@ -19,6 +19,10 @@ class VanillaBroadcastServer(ServerCls):
         ListenForEvent("ClientLoadAddonsFinishServerEvent", self, self.onClientLoadAddonsFinishServerEvent)
         self._registryData = {}  # type: dict[str, RegistryObj]
 
+    def onClientLoadAddonsFinishServerEvent(self, _):
+        # self.getRegistryObj().setBossName("凋灵").setFillOnTop().setFillColor((1.0, 0.0, 0.0)).registry()
+        pass
+
     @staticmethod
     def getRegistryObj():
         return RegistryObj()

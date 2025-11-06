@@ -25,7 +25,7 @@ def onUHBRegistry(packedRegistryObj):
 
 
 @Listen("LoadClientAddonScriptsAfter")
-def onLoadClientAddonScriptsAfter():
+def onLoadClientAddonScriptsAfter(_):
     global getInitRegistry
     if not getInitRegistry:
         Call("UHB/server/request_registry")
